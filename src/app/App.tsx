@@ -7,6 +7,7 @@ import { DiagnosticResult } from './pages/DiagnosticResult';
 import { History } from './pages/History';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { ForgotPassword } from './pages/ForgotPassword';
 import { SymptomAnalysis } from './pages/SymptomAnalysis';
 import { Settings } from './pages/Settings';
 import { Pets } from './pages/Pets';
@@ -19,7 +20,7 @@ import { Navigate } from 'react-router';
 function AppContent() {
   const location = useLocation();
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/forgot-password';
   
   const user = getCurrentUser();
 
@@ -59,6 +60,7 @@ function AppContent() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/consultation" element={<SymptomAnalysis />} />
           <Route path="/consultation/step2" element={<ConsultationStep2 />} />
           <Route path="/result" element={<DiagnosticResult />} />

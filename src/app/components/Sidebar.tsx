@@ -94,7 +94,10 @@ export function Sidebar({ theme, toggleTheme }: SidebarProps) {
           <span>Configuración</span>
         </button>
         <button 
-          onClick={() => navigate('/login')}
+          onClick={() => {
+            import('../utils/storage').then(m => m.setCurrentUser(null));
+            window.location.href = '/login';
+          }}
           className="flex items-center gap-3 px-4 py-3 rounded-lg text-destructive/70 hover:bg-destructive/10 hover:text-destructive transition-all duration-200 w-full group"
         >
           <LogOut size={20} className="group-hover:-translate-x-1 transition-transform" />
