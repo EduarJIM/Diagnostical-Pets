@@ -16,6 +16,42 @@ namespace DiagnosticaTuMascota.Pages;
 /// </summary>
 public sealed class DiagnosticResultPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PageBody body = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel root = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel topBar = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel back = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PillButton resultPill = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel headerRow = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel headerIcon = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel sectionRow = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel implicationsCard = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel implHeader = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel actionsCard = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel actionsHeader = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel extraHeader = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private MedicalDisclaimer legal = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel actions = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton finishBtn = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton historyBtn = null!;
     private readonly INavigator _nav;
     private readonly SeverityHero _hero;
     private readonly FlowLayoutPanel _implicationsList;
@@ -29,10 +65,10 @@ public sealed class DiagnosticResultPage : PageBase
     public DiagnosticResultPage(INavigator nav)
     {
         _nav = nav;
-        var body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 980 };
+        body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 980 };
         Controls.Add(body);
 
-        var root = new FlowLayoutPanel
+        root = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -42,10 +78,10 @@ public sealed class DiagnosticResultPage : PageBase
             Width = 940
         };
 
-        var topBar = new Panel { Height = 46, Width = 940, BackColor = Color.Transparent };
-        var back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver al Inicio", Cursor = Cursors.Hand, Anchor = AnchorStyles.Left };
+        topBar = new Panel { Height = 46, Width = 940, BackColor = Color.Transparent };
+        back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver al Inicio", Cursor = Cursors.Hand, Anchor = AnchorStyles.Left };
         back.Click += (_, _) => _nav.Navigate(AppPage.Dashboard);
-        var resultPill = new PillButton { Text = "Resultado del Análisis", IconText = "🔬", Active = true, Width = 170, Height = 34, ActiveColor = AppTheme.SeverityLeve };
+        resultPill = new PillButton { Text = "Resultado del Análisis", IconText = "🔬", Active = true, Width = 170, Height = 34, ActiveColor = AppTheme.SeverityLeve };
         topBar.Controls.Add(back);
         topBar.Controls.Add(resultPill);
         topBar.Resize += (_, _) =>
@@ -55,9 +91,9 @@ public sealed class DiagnosticResultPage : PageBase
         };
         root.Controls.Add(topBar);
 
-        var headerRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent };
-        var headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "🩺", Font = AppTheme.Emoji(15f) };
-        var title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Análisis Clínico" };
+        headerRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent };
+        headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "🩺", Font = AppTheme.Emoji(15f) };
+        title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Análisis Clínico" };
         headerRow.Controls.Add(headerIcon);
         headerRow.Controls.Add(title);
         root.Controls.Add(headerRow);
@@ -68,14 +104,14 @@ public sealed class DiagnosticResultPage : PageBase
         _hero = new SeverityHero { Width = 940, Height = 190 };
         root.Controls.Add(_hero);
 
-        var sectionRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = true, AutoSize = true, BackColor = Color.Transparent, Width = 940 };
+        sectionRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = true, AutoSize = true, BackColor = Color.Transparent, Width = 940 };
 
-        var implicationsCard = new RoundedPanel
+        implicationsCard = new RoundedPanel
         {
             FillColor = AppTheme.Card, CornerRadius = 16, BorderColor = AppTheme.Border,
             Width = 455, Height = 250, Padding = new Padding(22, 16, 22, 16), Margin = new Padding(0, 20, 18, 8)
         };
-        var implHeader = new ThemeLabel { TextKind = TextKind.Heading, Text = "⚠️  Implicaciones Clínicas", AutoSize = true };
+        implHeader = new ThemeLabel { TextKind = TextKind.Heading, Text = "⚠️  Implicaciones Clínicas", AutoSize = true };
         _implicationsList = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.TopDown, WrapContents = false, AutoSize = true, BackColor = Color.Transparent,
@@ -85,12 +121,12 @@ public sealed class DiagnosticResultPage : PageBase
         implicationsCard.Controls.Add(_implicationsList);
         sectionRow.Controls.Add(implicationsCard);
 
-        var actionsCard = new RoundedPanel
+        actionsCard = new RoundedPanel
         {
             FillColor = AppTheme.Card, CornerRadius = 16, BorderColor = AppTheme.Border,
             Width = 455, Height = 250, Padding = new Padding(22, 16, 22, 16), Margin = new Padding(0, 20, 0, 8)
         };
-        var actionsHeader = new ThemeLabel { TextKind = TextKind.Heading, Text = "🩹  Primeros Auxilios / Acciones", AutoSize = true };
+        actionsHeader = new ThemeLabel { TextKind = TextKind.Heading, Text = "🩹  Primeros Auxilios / Acciones", AutoSize = true };
         _actionsList = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.TopDown, WrapContents = false, AutoSize = true, BackColor = Color.Transparent,
@@ -113,7 +149,7 @@ public sealed class DiagnosticResultPage : PageBase
             Margin = new Padding(0, 8, 0, 8),
             Visible = false
         };
-        var extraHeader = new ThemeLabel { TextKind = TextKind.SubHeading, Text = "📝  Información Adicional", AutoSize = true };
+        extraHeader = new ThemeLabel { TextKind = TextKind.SubHeading, Text = "📝  Información Adicional", AutoSize = true };
         _extraText = new ThemeLabel
         {
             TextKind = TextKind.Muted,
@@ -125,10 +161,10 @@ public sealed class DiagnosticResultPage : PageBase
         _extraCard.Controls.Add(_extraText);
         root.Controls.Add(_extraCard);
 
-        var legal = new MedicalDisclaimer { Width = 940, Height = 118 };
+        legal = new MedicalDisclaimer { Width = 940, Height = 118 };
         root.Controls.Add(legal);
 
-        var actions = new FlowLayoutPanel
+        actions = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.RightToLeft,
             AutoSize = true,
@@ -136,13 +172,13 @@ public sealed class DiagnosticResultPage : PageBase
             Width = 940,
             Padding = new Padding(0, 4, 0, 20)
         };
-        var finishBtn = new RoundedButton
+        finishBtn = new RoundedButton
         {
             Variant = ButtonVariant.Primary, Text = "Finalizar y Volver al Inicio", Icon = "🏠", IconSize = 9f,
             Size = new Size(240, 44), Font = AppTheme.Medium(9.5f), Margin = new Padding(10, 0, 0, 0)
         };
         finishBtn.Click += (_, _) => _nav.Navigate(AppPage.Dashboard);
-        var historyBtn = new RoundedButton
+        historyBtn = new RoundedButton
         {
             Variant = ButtonVariant.Outline, Text = "Ver Historial", Icon = "📜", IconSize = 9f,
             Size = new Size(150, 44), Font = AppTheme.Medium(9.5f), Margin = new Padding(0, 0, 10, 0)

@@ -13,6 +13,40 @@ namespace DiagnosticaTuMascota.Pages;
 /// </summary>
 public sealed class ConsultationStep2Page : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PageBody body = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel root = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel topBar = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel back = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PillButton stepPill = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ProgressBarSkin progress = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel headerRow = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel headerIcon = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel card = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private TableLayoutPanel layout = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel petLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel infoLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel tip = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel tipLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton submit = null!;
     private const string ManualOption = "Otra Mascota (No Registrada)";
 
     private readonly INavigator _nav;
@@ -25,10 +59,10 @@ public sealed class ConsultationStep2Page : PageBase
     public ConsultationStep2Page(INavigator nav)
     {
         _nav = nav;
-        var body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 980 };
+        body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 980 };
         Controls.Add(body);
 
-        var root = new FlowLayoutPanel
+        root = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -39,11 +73,11 @@ public sealed class ConsultationStep2Page : PageBase
         };
 
         // Barra superior
-        var topBar = new Panel { Height = 46, Width = 940, BackColor = Color.Transparent };
-        var back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver a Síntomas", Cursor = Cursors.Hand, Anchor = AnchorStyles.Left };
+        topBar = new Panel { Height = 46, Width = 940, BackColor = Color.Transparent };
+        back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver a Síntomas", Cursor = Cursors.Hand, Anchor = AnchorStyles.Left };
         back.Click += (_, _) => _nav.Navigate(AppPage.SymptomAnalysis);
-        var stepPill = new PillButton { Text = "Paso 2 de 2", IconText = "🗂️", Active = true, Width = 130, Height = 34, ActiveColor = AppTheme.Secondary };
-        var progress = new ProgressBarSkin { Width = 220, Height = 8, Percent = 100, Anchor = AnchorStyles.Left };
+        stepPill = new PillButton { Text = "Paso 2 de 2", IconText = "🗂️", Active = true, Width = 130, Height = 34, ActiveColor = AppTheme.Secondary };
+        progress = new ProgressBarSkin { Width = 220, Height = 8, Percent = 100, Anchor = AnchorStyles.Left };
         topBar.Controls.Add(back);
         topBar.Controls.Add(stepPill);
         topBar.Controls.Add(progress);
@@ -55,14 +89,14 @@ public sealed class ConsultationStep2Page : PageBase
         };
         root.Controls.Add(topBar);
 
-        var headerRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent };
-        var headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "🩺", Font = AppTheme.Emoji(15f) };
-        var title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Asignación de Consulta" };
+        headerRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent };
+        headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "🩺", Font = AppTheme.Emoji(15f) };
+        title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Asignación de Consulta" };
         headerRow.Controls.Add(headerIcon);
         headerRow.Controls.Add(title);
         root.Controls.Add(headerRow);
 
-        var subtitle = new ThemeLabel
+        subtitle = new ThemeLabel
         {
             TextKind = TextKind.Body,
             Text = "Completa los datos de la consulta para generar la orientación clínica.",
@@ -74,7 +108,7 @@ public sealed class ConsultationStep2Page : PageBase
         root.Controls.Add(subtitle);
 
         // Tarjeta principal
-        var card = new RoundedPanel
+        card = new RoundedPanel
         {
             FillColor = AppTheme.Card,
             CornerRadius = 20,
@@ -84,7 +118,7 @@ public sealed class ConsultationStep2Page : PageBase
             Padding = new Padding(30, 24, 30, 24)
         };
 
-        var layout = new TableLayoutPanel
+        layout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
             ColumnCount = 1,
@@ -93,7 +127,7 @@ public sealed class ConsultationStep2Page : PageBase
         };
         for (int i = 0; i < 9; i++) layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        var petLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Mascota para la consulta", Dock = DockStyle.Fill, Margin = new Padding(0, 4, 0, 3) };
+        petLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Mascota para la consulta", Dock = DockStyle.Fill, Margin = new Padding(0, 4, 0, 3) };
         layout.Controls.Add(petLabel, 0, 0);
 
         _petCombo = new RoundedComboBox
@@ -119,7 +153,7 @@ public sealed class ConsultationStep2Page : PageBase
         };
         layout.Controls.Add(_manualName, 0, 3);
 
-        var infoLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Información adicional o contexto importante", Dock = DockStyle.Fill, Margin = new Padding(0, 14, 0, 3) };
+        infoLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Información adicional o contexto importante", Dock = DockStyle.Fill, Margin = new Padding(0, 14, 0, 3) };
         layout.Controls.Add(infoLabel, 0, 4);
 
         _additional = new RoundedTextBox
@@ -134,7 +168,7 @@ public sealed class ConsultationStep2Page : PageBase
         };
         layout.Controls.Add(_additional, 0, 5);
 
-        var tip = new RoundedPanel
+        tip = new RoundedPanel
         {
             FillColor = AppTheme.WithAlpha(AppTheme.Secondary, 14),
             CornerRadius = 12,
@@ -143,7 +177,7 @@ public sealed class ConsultationStep2Page : PageBase
             Dock = DockStyle.Fill,
             Margin = new Padding(0, 16, 0, 4)
         };
-        var tipLabel = new ThemeLabel
+        tipLabel = new ThemeLabel
         {
             TextKind = TextKind.MutedSmall,
             Text = "💡  Será agregada automáticamente a tu historial de consultas.",
@@ -155,7 +189,7 @@ public sealed class ConsultationStep2Page : PageBase
         tip.Resize += (_, _) => tipLabel.Location = new Point(16, (tip.Height - tipLabel.Height) / 2);
         layout.Controls.Add(tip, 0, 6);
 
-        var submit = new RoundedButton
+        submit = new RoundedButton
         {
             Variant = ButtonVariant.Primary,
             Text = "Generar Diagnóstico y Guardar",

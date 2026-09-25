@@ -13,6 +13,22 @@ namespace DiagnosticaTuMascota.Pages;
 /// </summary>
 public sealed class HistoryPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PageBody body = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel root = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel header = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel headerIcon = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel tabs = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel contentHost = null!;
     private readonly INavigator _nav;
     private readonly PillButton _tabHistory;
     private readonly PillButton _tabUpcoming;
@@ -26,10 +42,10 @@ public sealed class HistoryPage : PageBase
     public HistoryPage(INavigator nav)
     {
         _nav = nav;
-        var body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1080 };
+        body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1080 };
         Controls.Add(body);
 
-        var root = new FlowLayoutPanel
+        root = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -39,10 +55,10 @@ public sealed class HistoryPage : PageBase
             Width = 1040
         };
 
-        var header = new Panel { Height = 96, Width = 1040, BackColor = Color.Transparent };
-        var headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "📜", Font = AppTheme.Emoji(16f) };
-        var title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Historial y Seguimiento" };
-        var subtitle = new ThemeLabel { TextKind = TextKind.Body, Text = "Consulta anteriores, procesos programados y alertas de cuidado para tus mascotas." };
+        header = new Panel { Height = 96, Width = 1040, BackColor = Color.Transparent };
+        headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "📜", Font = AppTheme.Emoji(16f) };
+        title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Historial y Seguimiento" };
+        subtitle = new ThemeLabel { TextKind = TextKind.Body, Text = "Consulta anteriores, procesos programados y alertas de cuidado para tus mascotas." };
         _actionBtn = new RoundedButton
         {
             Variant = ButtonVariant.Primary,
@@ -67,7 +83,7 @@ public sealed class HistoryPage : PageBase
         root.Controls.Add(header);
 
         // Pestañas
-        var tabs = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent, Margin = new Padding(0, 0, 0, 16) };
+        tabs = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent, Margin = new Padding(0, 0, 0, 16) };
         _tabHistory = new PillButton { Text = "Consultas Anteriores", IconText = "📜", Width = 170, Height = 38, ActiveColor = AppTheme.SeverityLeve };
         _tabUpcoming = new PillButton { Text = "Próximos Procesos", IconText = "📅", Width = 160, Height = 38, ActiveColor = Color.FromArgb(59, 130, 246) };
         _tabAlerts = new PillButton { Text = "Alertas Activas", IconText = "🔔", Width = 150, Height = 38, ActiveColor = AppTheme.SeverityModerate };
@@ -79,7 +95,7 @@ public sealed class HistoryPage : PageBase
         tabs.Controls.Add(_tabAlerts);
         root.Controls.Add(tabs);
 
-        var contentHost = new Panel { Width = 1040, Height = 600, AutoScroll = true, BackColor = Color.Transparent, Anchor = AnchorStyles.Top | AnchorStyles.Left };
+        contentHost = new Panel { Width = 1040, Height = 600, AutoScroll = true, BackColor = Color.Transparent, Anchor = AnchorStyles.Top | AnchorStyles.Left };
 
         _historyList = new FlowLayoutPanel { FlowDirection = FlowDirection.TopDown, WrapContents = false, AutoSize = true, Width = 1020, BackColor = Color.Transparent };
         _upcomingList = new FlowLayoutPanel { FlowDirection = FlowDirection.TopDown, WrapContents = false, AutoSize = true, Width = 1020, BackColor = Color.Transparent };

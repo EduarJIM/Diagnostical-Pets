@@ -10,6 +10,28 @@ namespace DiagnosticaTuMascota.Pages;
 
 public sealed class LoginPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private CenteredHost host = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel card = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private TableLayoutPanel layout = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PulsingIconBox logo = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel emailLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel passLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel forgot = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton loginBtn = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel footer = null!;
     private readonly INavigator _nav;
     private readonly RoundedTextBox _email;
     private readonly RoundedTextBox _password;
@@ -17,13 +39,13 @@ public sealed class LoginPage : PageBase
     public LoginPage(INavigator nav)
     {
         _nav = nav;
-        var host = new CenteredHost { Dock = DockStyle.Fill };
+        host = new CenteredHost { Dock = DockStyle.Fill };
         Controls.Add(host);
 
-        var card = new RoundedPanel { FillColor = AppTheme.Card, CornerRadius = 24, Size = new Size(440, 620), Anchor = AnchorStyles.None };
+        card = new RoundedPanel { FillColor = AppTheme.Card, CornerRadius = 24, Size = new Size(440, 620), Anchor = AnchorStyles.None };
         host.Controls.Add(card);
 
-        var layout = new TableLayoutPanel
+        layout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
             ColumnCount = 1,
@@ -44,35 +66,35 @@ public sealed class LoginPage : PageBase
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 6));  // 11 separador
         layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));   // 12 pie
 
-        var logo = new PulsingIconBox { IconText = "🩺", Size = new Size(64, 64), CornerRadius = 14, IconFontSize = 20f, Anchor = AnchorStyles.None };
+        logo = new PulsingIconBox { IconText = "🩺", Size = new Size(64, 64), CornerRadius = 14, IconFontSize = 20f, Anchor = AnchorStyles.None };
         layout.Controls.Add(logo, 0, 0);
 
-        var title = new ThemeLabel { TextKind = TextKind.Title, Text = "Bienvenido de nuevo", Anchor = AnchorStyles.None };
+        title = new ThemeLabel { TextKind = TextKind.Title, Text = "Bienvenido de nuevo", Anchor = AnchorStyles.None };
         layout.Controls.Add(title, 0, 1);
 
-        var subtitle = new ThemeLabel { TextKind = TextKind.Muted, Text = "Ingresa a tu cuenta de Diagnostica tu Mascota", Anchor = AnchorStyles.None, AutoEllipsis = true, MaximumSize = new Size(340, 40) };
+        subtitle = new ThemeLabel { TextKind = TextKind.Muted, Text = "Ingresa a tu cuenta de Diagnostica tu Mascota", Anchor = AnchorStyles.None, AutoEllipsis = true, MaximumSize = new Size(340, 40) };
         layout.Controls.Add(subtitle, 0, 2);
 
         // Correo
-        var emailLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Correo electrónico", Dock = DockStyle.Fill };
+        emailLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Correo electrónico", Dock = DockStyle.Fill };
         layout.Controls.Add(emailLabel, 0, 4);
 
         _email = MakeField("✉️", "usuario@ejemplo.com");
         layout.Controls.Add(_email, 0, 5);
 
         // Contraseña
-        var passLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Contraseña", Dock = DockStyle.Fill };
+        passLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Contraseña", Dock = DockStyle.Fill };
         layout.Controls.Add(passLabel, 0, 6);
 
         _password = MakeField("🔒", "••••••••");
         _password.PasswordChar = '•';
         layout.Controls.Add(_password, 0, 7);
 
-        var forgot = new ThemeLabel { TextKind = TextKind.PrimarySmall, Text = "¿Olvidaste tu contraseña?", Anchor = AnchorStyles.Right, Cursor = Cursors.Hand };
+        forgot = new ThemeLabel { TextKind = TextKind.PrimarySmall, Text = "¿Olvidaste tu contraseña?", Anchor = AnchorStyles.Right, Cursor = Cursors.Hand };
         forgot.Click += (_, _) => _nav.Navigate(AppPage.ForgotPassword);
         layout.Controls.Add(forgot, 0, 8);
 
-        var loginBtn = new RoundedButton
+        loginBtn = new RoundedButton
         {
             Variant = ButtonVariant.Primary,
             Text = "Iniciar Sesión",
@@ -85,7 +107,7 @@ public sealed class LoginPage : PageBase
         loginBtn.Click += (_, _) => DoLogin();
         layout.Controls.Add(loginBtn, 0, 10);
 
-        var footer = new ThemeLabel
+        footer = new ThemeLabel
         {
             TextKind = TextKind.MutedSmall,
             Text = "¿No tienes una cuenta?  Regístrate aquí",
@@ -145,6 +167,22 @@ public sealed class LoginPage : PageBase
 
 public sealed class RegisterPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private CenteredHost host = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel card = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private TableLayoutPanel layout = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PulsingIconBox logo = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton createBtn = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel footer = null!;
     private readonly INavigator _nav;
     private readonly RoundedTextBox _name;
     private readonly RoundedTextBox _phone;
@@ -155,13 +193,13 @@ public sealed class RegisterPage : PageBase
     public RegisterPage(INavigator nav)
     {
         _nav = nav;
-        var host = new CenteredHost { Dock = DockStyle.Fill };
+        host = new CenteredHost { Dock = DockStyle.Fill };
         Controls.Add(host);
 
-        var card = new RoundedPanel { FillColor = AppTheme.Card, CornerRadius = 24, Size = new Size(540, 600), Anchor = AnchorStyles.None };
+        card = new RoundedPanel { FillColor = AppTheme.Card, CornerRadius = 24, Size = new Size(540, 600), Anchor = AnchorStyles.None };
         host.Controls.Add(card);
 
-        var layout = new TableLayoutPanel
+        layout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
             ColumnCount = 2,
@@ -190,15 +228,15 @@ public sealed class RegisterPage : PageBase
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 10)); // 14 separador
         layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));    // 15 pie (span 2)
 
-        var logo = new PulsingIconBox { IconText = "🩺", Size = new Size(64, 64), CornerRadius = 14, IconFontSize = 20f, Anchor = AnchorStyles.None };
+        logo = new PulsingIconBox { IconText = "🩺", Size = new Size(64, 64), CornerRadius = 14, IconFontSize = 20f, Anchor = AnchorStyles.None };
         layout.Controls.Add(logo, 0, 0);
         layout.SetColumnSpan(logo, 2);
 
-        var title = new ThemeLabel { TextKind = TextKind.Title, Text = "Crea tu cuenta", Anchor = AnchorStyles.None };
+        title = new ThemeLabel { TextKind = TextKind.Title, Text = "Crea tu cuenta", Anchor = AnchorStyles.None };
         layout.Controls.Add(title, 0, 1);
         layout.SetColumnSpan(title, 2);
 
-        var subtitle = new ThemeLabel { TextKind = TextKind.Muted, Text = "Únete a la mejor comunidad de cuidado para mascotas", Anchor = AnchorStyles.None, AutoEllipsis = true, MaximumSize = new Size(440, 40) };
+        subtitle = new ThemeLabel { TextKind = TextKind.Muted, Text = "Únete a la mejor comunidad de cuidado para mascotas", Anchor = AnchorStyles.None, AutoEllipsis = true, MaximumSize = new Size(440, 40) };
         layout.Controls.Add(subtitle, 0, 2);
         layout.SetColumnSpan(subtitle, 2);
 
@@ -210,7 +248,7 @@ public sealed class RegisterPage : PageBase
         _password = AddField(layout, 10, 11, 0, "Contraseña", "🔒", "••••••••", password: true);
         _confirm = AddField(layout, 10, 11, 1, "Confirmar contraseña", "🔒", "••••••••", password: true);
 
-        var createBtn = new RoundedButton
+        createBtn = new RoundedButton
         {
             Variant = ButtonVariant.Primary,
             Text = "Crear Cuenta",
@@ -224,7 +262,7 @@ public sealed class RegisterPage : PageBase
         layout.Controls.Add(createBtn, 0, 13);
         layout.SetColumnSpan(createBtn, 2);
 
-        var footer = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "¿Ya tienes una cuenta?  Inicia sesión", Anchor = AnchorStyles.None, Cursor = Cursors.Hand };
+        footer = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "¿Ya tienes una cuenta?  Inicia sesión", Anchor = AnchorStyles.None, Cursor = Cursors.Hand };
         footer.Click += (_, _) => _nav.Navigate(AppPage.Login);
         layout.Controls.Add(footer, 0, 15);
         layout.SetColumnSpan(footer, 2);
@@ -292,6 +330,28 @@ public sealed class RegisterPage : PageBase
 
 public sealed class ForgotPasswordPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private CenteredHost host = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel card = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private TableLayoutPanel layout = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel back = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PulsingIconBox logo = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel phoneNote = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel step3 = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel newLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel confirmLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton submit = null!;
     private readonly INavigator _nav;
     private readonly Panel _stepHost;
     private readonly RoundedTextBox _emailField;
@@ -305,13 +365,13 @@ public sealed class ForgotPasswordPage : PageBase
     public ForgotPasswordPage(INavigator nav)
     {
         _nav = nav;
-        var host = new CenteredHost { Dock = DockStyle.Fill };
+        host = new CenteredHost { Dock = DockStyle.Fill };
         Controls.Add(host);
 
-        var card = new RoundedPanel { FillColor = AppTheme.Card, CornerRadius = 24, Size = new Size(440, 600), Anchor = AnchorStyles.None };
+        card = new RoundedPanel { FillColor = AppTheme.Card, CornerRadius = 24, Size = new Size(440, 600), Anchor = AnchorStyles.None };
         host.Controls.Add(card);
 
-        var layout = new TableLayoutPanel
+        layout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
             ColumnCount = 1,
@@ -327,14 +387,14 @@ public sealed class ForgotPasswordPage : PageBase
         layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
         // Volver al inicio
-        var back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver al inicio de sesión", Anchor = AnchorStyles.Left, Cursor = Cursors.Hand };
+        back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver al inicio de sesión", Anchor = AnchorStyles.Left, Cursor = Cursors.Hand };
         back.Click += (_, _) => _nav.Navigate(AppPage.Login);
         layout.Controls.Add(back, 0, 0);
 
-        var logo = new PulsingIconBox { IconText = "🔑", Size = new Size(64, 64), CornerRadius = 14, IconFontSize = 20f, Anchor = AnchorStyles.None };
+        logo = new PulsingIconBox { IconText = "🔑", Size = new Size(64, 64), CornerRadius = 14, IconFontSize = 20f, Anchor = AnchorStyles.None };
         layout.Controls.Add(logo, 0, 2);
 
-        var title = new ThemeLabel { TextKind = TextKind.Title, Text = "Restablecer Contraseña", Anchor = AnchorStyles.None };
+        title = new ThemeLabel { TextKind = TextKind.Title, Text = "Restablecer Contraseña", Anchor = AnchorStyles.None };
         layout.Controls.Add(title, 0, 3);
 
         _subtitle = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Ingresa tu correo para comenzar el proceso", Anchor = AnchorStyles.None, AutoEllipsis = true, MaximumSize = new Size(350, 30) };
@@ -353,7 +413,7 @@ public sealed class ForgotPasswordPage : PageBase
 
         // ---- Paso 2 ----
         _phoneField = BuildStepField("📞", "+1 234 567 890");
-        var phoneNote = new ThemeLabel { TextKind = TextKind.TinyMuted, Text = "Por seguridad, requerimos el teléfono registrado en tu cuenta.", MaximumSize = new Size(360, 26), Anchor = AnchorStyles.Left };
+        phoneNote = new ThemeLabel { TextKind = TextKind.TinyMuted, Text = "Por seguridad, requerimos el teléfono registrado en tu cuenta.", MaximumSize = new Size(360, 26), Anchor = AnchorStyles.Left };
         var step2 = BuildStepPanelWithNote(_phoneField, "Verificar Identidad", DoStep2, phoneNote);
         _stepHost.Controls.Add(step2);
 
@@ -363,7 +423,7 @@ public sealed class ForgotPasswordPage : PageBase
         _confirmPass = BuildStepField("🔄", "••••••••");
         _confirmPass.PasswordChar = '•';
 
-        var step3 = new FlowLayoutPanel
+        step3 = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -371,9 +431,9 @@ public sealed class ForgotPasswordPage : PageBase
             BackColor = Color.Transparent,
             Padding = new Padding(0, 0, 0, 4)
         };
-        var newLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Nueva Contraseña", Dock = DockStyle.Top, Anchor = AnchorStyles.Left };
-        var confirmLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Confirmar Nueva Contraseña", Dock = DockStyle.Top, Anchor = AnchorStyles.Left };
-        var submit = new RoundedButton
+        newLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Nueva Contraseña", Dock = DockStyle.Top, Anchor = AnchorStyles.Left };
+        confirmLabel = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "Confirmar Nueva Contraseña", Dock = DockStyle.Top, Anchor = AnchorStyles.Left };
+        submit = new RoundedButton
         {
             Variant = ButtonVariant.Primary, Text = "Actualizar Contraseña", Icon = "🔑", IconSize = 9f,
             Height = 46, Width = 368, Anchor = AnchorStyles.None, Font = AppTheme.Medium(10.5f)

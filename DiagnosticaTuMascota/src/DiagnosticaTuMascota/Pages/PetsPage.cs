@@ -9,6 +9,20 @@ namespace DiagnosticaTuMascota.Pages;
 
 public sealed class PetsPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PageBody body = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel root = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel header = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel icon = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton addBtn = null!;
     private readonly INavigator _nav;
     private readonly FlowLayoutPanel _cardsHost;
     private List<PetData> _pets = new();
@@ -16,10 +30,10 @@ public sealed class PetsPage : PageBase
     public PetsPage(INavigator nav)
     {
         _nav = nav;
-        var body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1150 };
+        body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1150 };
         Controls.Add(body);
 
-        var root = new FlowLayoutPanel
+        root = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -28,11 +42,11 @@ public sealed class PetsPage : PageBase
         };
 
         // Encabezado
-        var header = new Panel { Height = 118, Width = 1070, Anchor = AnchorStyles.None, BackColor = Color.Transparent };
-        var icon = new ThemeLabel { TextKind = TextKind.Body, Text = "🐾", Font = AppTheme.Emoji(16f) };
-        var title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Mis Mascotas" };
-        var subtitle = new ThemeLabel { TextKind = TextKind.Body, Text = "Gestiona el perfil de tus mascotas y su información clínica." };
-        var addBtn = new RoundedButton
+        header = new Panel { Height = 118, Width = 1070, Anchor = AnchorStyles.None, BackColor = Color.Transparent };
+        icon = new ThemeLabel { TextKind = TextKind.Body, Text = "🐾", Font = AppTheme.Emoji(16f) };
+        title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Mis Mascotas" };
+        subtitle = new ThemeLabel { TextKind = TextKind.Body, Text = "Gestiona el perfil de tus mascotas y su información clínica." };
+        addBtn = new RoundedButton
         {
             Variant = ButtonVariant.Primary,
             Text = "Agregar Mascota",

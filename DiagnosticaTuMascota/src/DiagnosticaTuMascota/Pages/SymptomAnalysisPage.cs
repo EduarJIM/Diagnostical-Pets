@@ -13,6 +13,34 @@ namespace DiagnosticaTuMascota.Pages;
 /// </summary>
 public sealed class SymptomAnalysisPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PageBody body = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel root = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel topBar = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel back = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PillButton stepPill = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ProgressBarSkin progress = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel headerIcon = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel headerRow = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private MedicalDisclaimer disclaimer = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ColumnStyle colLeft = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ColumnStyle colRight = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel bottomBar = null!;
     private readonly INavigator _nav;
     private readonly HashSet<string> _selected = new();
     private readonly ThemeLabel _countLabel;
@@ -36,10 +64,10 @@ public sealed class SymptomAnalysisPage : PageBase
     public SymptomAnalysisPage(INavigator nav)
     {
         _nav = nav;
-        var body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1150 };
+        body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1150 };
         Controls.Add(body);
 
-        var root = new FlowLayoutPanel
+        root = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -50,11 +78,11 @@ public sealed class SymptomAnalysisPage : PageBase
         };
 
         // Barra superior
-        var topBar = new Panel { Height = 46, Width = 1110, BackColor = Color.Transparent };
-        var back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver al Dashboard", Cursor = Cursors.Hand, Anchor = AnchorStyles.Left };
+        topBar = new Panel { Height = 46, Width = 1110, BackColor = Color.Transparent };
+        back = new ThemeLabel { TextKind = TextKind.MutedSmall, Text = "←  Volver al Dashboard", Cursor = Cursors.Hand, Anchor = AnchorStyles.Left };
         back.Click += (_, _) => _nav.Navigate(AppPage.Dashboard);
-        var stepPill = new PillButton { Text = "Paso 1 de 2", IconText = "📋", Active = true, Width = 130, Height = 34, ActiveColor = AppTheme.Secondary };
-        var progress = new ProgressBarSkin { Width = 220, Height = 8, Percent = 50, Anchor = AnchorStyles.Left };
+        stepPill = new PillButton { Text = "Paso 1 de 2", IconText = "📋", Active = true, Width = 130, Height = 34, ActiveColor = AppTheme.Secondary };
+        progress = new ProgressBarSkin { Width = 220, Height = 8, Percent = 50, Anchor = AnchorStyles.Left };
         topBar.Controls.Add(back);
         topBar.Controls.Add(stepPill);
         topBar.Controls.Add(progress);
@@ -66,9 +94,9 @@ public sealed class SymptomAnalysisPage : PageBase
         };
         root.Controls.Add(topBar);
 
-        var headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "🩺", Font = AppTheme.Emoji(15f), Anchor = AnchorStyles.Left };
-        var title = new ThemeLabel { TextKind = TextKind.Display, Text = "  ¿Qué síntomas presenta tu mascota?", Anchor = AnchorStyles.Left };
-        var subtitle = new ThemeLabel
+        headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "🩺", Font = AppTheme.Emoji(15f), Anchor = AnchorStyles.Left };
+        title = new ThemeLabel { TextKind = TextKind.Display, Text = "  ¿Qué síntomas presenta tu mascota?", Anchor = AnchorStyles.Left };
+        subtitle = new ThemeLabel
         {
             TextKind = TextKind.Body,
             Text = "Selecciona todos los síntomas que observes. Esta orientación NO sustituye la consulta veterinaria.",
@@ -76,20 +104,20 @@ public sealed class SymptomAnalysisPage : PageBase
             AutoEllipsis = true,
             Anchor = AnchorStyles.Left
         };
-        var headerRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent };
+        headerRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, AutoSize = true, BackColor = Color.Transparent };
         headerRow.Controls.Add(headerIcon);
         headerRow.Controls.Add(title);
         root.Controls.Add(headerRow);
         subtitle.Margin = new Padding(38, 0, 0, 14);
         root.Controls.Add(subtitle);
 
-        var disclaimer = new MedicalDisclaimer { Width = 1110, Height = 104 };
+        disclaimer = new MedicalDisclaimer { Width = 1110, Height = 104 };
         root.Controls.Add(disclaimer);
 
         // Fila principal: categorías + tarjeta de síntomas
         _mainRow = new TableLayoutPanel { ColumnCount = 2, RowCount = 1, Width = 1110, Height = 480, BackColor = Color.Transparent };
-        var colLeft = new ColumnStyle(SizeType.Absolute, 320);
-        var colRight = new ColumnStyle(SizeType.Percent, 100);
+        colLeft = new ColumnStyle(SizeType.Absolute, 320);
+        colRight = new ColumnStyle(SizeType.Percent, 100);
         _mainRow.ColumnStyles.Add(colLeft);
         _mainRow.ColumnStyles.Add(colRight);
 
@@ -116,7 +144,7 @@ public sealed class SymptomAnalysisPage : PageBase
         root.Controls.Add(_mainRow);
 
         // Barra inferior con contador y botón continuar
-        var bottomBar = new RoundedPanel
+        bottomBar = new RoundedPanel
         {
             FillColor = AppTheme.Card,
             CornerRadius = 18,

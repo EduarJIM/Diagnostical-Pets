@@ -12,6 +12,40 @@ namespace DiagnosticaTuMascota.Pages;
 /// </summary>
 public sealed class SettingsPage : PageBase
 {
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private PageBody body = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel root = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private Panel header = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel headerIcon = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel title = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel subtitle = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton logoutBtn = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private TableLayoutPanel grid = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel profileCard = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel pl = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel emailNote = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton saveProfile = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel securityCard = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private FlowLayoutPanel sl = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedPanel warn = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private ThemeLabel warnLabel = null!;
+    /// <summary>Control del diseño (ver InitializeComponent).</summary>
+    private RoundedButton saveSecurity = null!;
     private readonly INavigator _nav;
     private readonly RoundedTextBox _name;
     private readonly RoundedTextBox _email;
@@ -23,10 +57,10 @@ public sealed class SettingsPage : PageBase
     public SettingsPage(INavigator nav)
     {
         _nav = nav;
-        var body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1100 };
+        body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1100 };
         Controls.Add(body);
 
-        var root = new FlowLayoutPanel
+        root = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill,
             FlowDirection = FlowDirection.TopDown,
@@ -37,11 +71,11 @@ public sealed class SettingsPage : PageBase
         };
 
         // Encabezado
-        var header = new Panel { Height = 96, Width = 1060, BackColor = Color.Transparent };
-        var headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "⚙️", Font = AppTheme.Emoji(16f) };
-        var title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Configuración de Cuenta" };
-        var subtitle = new ThemeLabel { TextKind = TextKind.Body, Text = "Administra tu perfil, seguridad y preferencias." };
-        var logoutBtn = new RoundedButton
+        header = new Panel { Height = 96, Width = 1060, BackColor = Color.Transparent };
+        headerIcon = new ThemeLabel { TextKind = TextKind.Body, Text = "⚙️", Font = AppTheme.Emoji(16f) };
+        title = new ThemeLabel { TextKind = TextKind.Display, Text = "  Configuración de Cuenta" };
+        subtitle = new ThemeLabel { TextKind = TextKind.Body, Text = "Administra tu perfil, seguridad y preferencias." };
+        logoutBtn = new RoundedButton
         {
             Variant = ButtonVariant.Destructive,
             Text = "Cerrar Sesión",
@@ -65,12 +99,12 @@ public sealed class SettingsPage : PageBase
         root.Controls.Add(header);
 
         // Dos columnas
-        var grid = new TableLayoutPanel { ColumnCount = 2, RowCount = 1, Width = 1060, Height = 540, BackColor = Color.Transparent };
+        grid = new TableLayoutPanel { ColumnCount = 2, RowCount = 1, Width = 1060, Height = 540, BackColor = Color.Transparent };
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
 
         // ---- Tarjeta Perfil ----
-        var profileCard = new RoundedPanel
+        profileCard = new RoundedPanel
         {
             FillColor = AppTheme.Card,
             CornerRadius = 18,
@@ -79,7 +113,7 @@ public sealed class SettingsPage : PageBase
             Padding = new Padding(26, 20, 26, 20),
             Margin = new Padding(0, 0, 12, 0)
         };
-        var pl = new FlowLayoutPanel
+        pl = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.TopDown,
             WrapContents = false,
@@ -94,7 +128,7 @@ public sealed class SettingsPage : PageBase
         _email = new RoundedTextBox { IconText = "✉️", Width = 460, Height = 42, FieldHeight = 42, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
         _email.Enabled = false;
         pl.Controls.Add(_email);
-        var emailNote = new ThemeLabel
+        emailNote = new ThemeLabel
         {
             TextKind = TextKind.TinyMuted,
             Text = "El correo es el identificador de tu cuenta y no puede cambiarse.",
@@ -103,7 +137,7 @@ public sealed class SettingsPage : PageBase
             Margin = new Padding(0, 2, 0, 4)
         };
         pl.Controls.Add(emailNote);
-        var saveProfile = new RoundedButton
+        saveProfile = new RoundedButton
         {
             Variant = ButtonVariant.Primary, Text = "Guardar Cambios", Icon = "💾", IconSize = 9f,
             Size = new Size(170, 42), Font = AppTheme.Medium(9.5f), Margin = new Padding(0, 10, 0, 0)
@@ -114,7 +148,7 @@ public sealed class SettingsPage : PageBase
         grid.Controls.Add(profileCard, 0, 0);
 
         // ---- Tarjeta Seguridad ----
-        var securityCard = new RoundedPanel
+        securityCard = new RoundedPanel
         {
             FillColor = AppTheme.Card,
             CornerRadius = 18,
@@ -123,7 +157,7 @@ public sealed class SettingsPage : PageBase
             Padding = new Padding(26, 20, 26, 20),
             Margin = new Padding(12, 0, 0, 0)
         };
-        var sl = new FlowLayoutPanel
+        sl = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.TopDown,
             WrapContents = false,
@@ -132,7 +166,7 @@ public sealed class SettingsPage : PageBase
         };
         sl.Controls.Add(new ThemeLabel { TextKind = TextKind.Heading, Text = "🔒  Seguridad de la Contraseña" });
 
-        var warn = new RoundedPanel
+        warn = new RoundedPanel
         {
             FillColor = AppTheme.WithAlpha(AppTheme.SeverityModerate, 12),
             CornerRadius = 12,
@@ -141,7 +175,7 @@ public sealed class SettingsPage : PageBase
             Height = 74,
             Margin = new Padding(0, 6, 0, 10)
         };
-        var warnLabel = new ThemeLabel
+        warnLabel = new ThemeLabel
         {
             TextKind = TextKind.MutedSmall,
             Text = "⚠️  Para cambiar tu contraseña debes escribir primero la contraseña actual, y las nuevas deben coincidir.",
@@ -164,7 +198,7 @@ public sealed class SettingsPage : PageBase
         _confirmPass = new RoundedTextBox { IconText = "🔄", PlaceholderText = "••••••••", Width = 460, Height = 42, FieldHeight = 42, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
         _confirmPass.PasswordChar = '•';
         sl.Controls.Add(_confirmPass);
-        var saveSecurity = new RoundedButton
+        saveSecurity = new RoundedButton
         {
             Variant = ButtonVariant.Primary, Text = "Actualizar Contraseña", Icon = "🔑", IconSize = 9f,
             Size = new Size(190, 42), Font = AppTheme.Medium(9.5f), Margin = new Padding(0, 10, 0, 0)
