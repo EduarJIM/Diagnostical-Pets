@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -30,14 +31,21 @@ public class PulsingIconBox : Control
     public override Size GetPreferredSize(Size proposedSize) => new Size(Width, Height);
 
     /// <summary>Texto emoji dibujado en el centro.</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? IconText { get; set; } = "🩺";
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public float IconFontSize { get; set; } = 16f;
     /// <summary>Radio de esquina: 0 = círculo perfecto.</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int CornerRadius { get; set; } = 14;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Pulsing { get; set; } = true;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color StartColor { get; set; } = AppTheme.Primary;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color EndColor { get; set; } = AppTheme.Secondary;
     /// <summary>Color del halo pulsante (usado para glow).</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color GlowColor { get; set; } = AppTheme.Primary;
 
     protected override void Dispose(bool disposing)

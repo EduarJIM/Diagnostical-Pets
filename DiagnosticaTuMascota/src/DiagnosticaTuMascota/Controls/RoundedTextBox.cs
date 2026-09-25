@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -62,30 +63,35 @@ public class RoundedTextBox : UserControl
         AppTheme.ThemeChanged += (_, _) => ApplyColors();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public new string Text
     {
         get => _inner.Text;
         set => _inner.Text = value;
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string PlaceholderText
     {
         get => _placeholder.Text;
         set { _placeholder.Text = value; UpdatePlaceholder(); }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? IconText
     {
         get => _iconLabel.Text;
         set { _iconLabel.Text = value ?? ""; LayoutChildren(); }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public char PasswordChar
     {
         get => _inner.PasswordChar;
         set => _inner.PasswordChar = value;
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Multiline
     {
         get => _inner.Multiline;
@@ -98,12 +104,14 @@ public class RoundedTextBox : UserControl
         }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string[] Lines
     {
         get => _inner.Lines;
         set => _inner.Lines = value ?? Array.Empty<string>();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int CornerRadius { get; set; } = 12;
 
     private int _fieldHeight = 44;
@@ -115,6 +123,7 @@ public class RoundedTextBox : UserControl
     /// aplasta el campo a alto 0 (antes, asignar Height disparaba el layout cuando
     /// FieldHeight aún valía 0 y el campo quedaba invisible = login inservible).
     /// </summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int FieldHeight
     {
         get => _fieldHeight;

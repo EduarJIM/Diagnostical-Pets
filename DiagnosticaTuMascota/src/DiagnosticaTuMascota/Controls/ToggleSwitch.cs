@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -36,6 +37,7 @@ public class ToggleSwitch : UserControl
         };
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Checked
     {
         get => _checked;

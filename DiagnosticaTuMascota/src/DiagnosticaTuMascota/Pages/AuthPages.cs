@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -511,6 +512,7 @@ public sealed class ProgressIndicator : Control
     /// <summary>Tamaño preferido real (evita colapso en filas AutoSize).</summary>
     public override Size GetPreferredSize(Size proposedSize) => new Size(Width, Height);
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int Step
     {
         get => _step;

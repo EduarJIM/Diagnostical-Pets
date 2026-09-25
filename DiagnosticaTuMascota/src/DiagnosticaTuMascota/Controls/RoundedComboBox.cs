@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -37,7 +38,9 @@ public class RoundedComboBox : UserControl
         AppTheme.ThemeChanged += (_, _) => { _inner.BackColor = AppTheme.Background; _inner.ForeColor = AppTheme.Foreground; Invalidate(); };
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int CornerRadius { get; set; } = 12;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int FieldHeight { get; set; } = 44;
 
     /// <summary>Tamaño preferido real (evita que colapse en filas AutoSize de TableLayoutPanel).</summary>
@@ -47,7 +50,9 @@ public class RoundedComboBox : UserControl
     public event EventHandler? SelectedIndexChanged;
 
     public ComboBox.ObjectCollection Items => _inner.Items;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public object? SelectedItem { get => _inner.SelectedItem; set => _inner.SelectedItem = value; }
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int SelectedIndex { get => _inner.SelectedIndex; set => _inner.SelectedIndex = value; }
     public string SelectedText => _inner.SelectedItem?.ToString() ?? "";
 

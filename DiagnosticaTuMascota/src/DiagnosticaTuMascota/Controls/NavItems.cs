@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -24,9 +25,12 @@ public class NavItem : UserControl
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? IconText { get; set; } = "🏠";
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Active { get; set; }
     /// <summary>Color de acento para ítems especiales (ej. Cerrar Sesión = rojo).</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color? AccentColor { get; set; }
 
     /// <summary>Tamaño preferido real (evita colapso en filas AutoSize).</summary>
@@ -85,9 +89,12 @@ public class PillButton : UserControl
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? IconText { get; set; }
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Active { get; set; }
     /// <summary>Color de relleno cuando está activo (primary, blue, amber...).</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color ActiveColor { get; set; } = AppTheme.Primary;
 
     /// <summary>Tamaño preferido real (evita colapso en filas AutoSize).</summary>

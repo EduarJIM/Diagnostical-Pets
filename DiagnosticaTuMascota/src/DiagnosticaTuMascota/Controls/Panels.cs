@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using DiagnosticaTuMascota.Theme;
@@ -22,25 +23,30 @@ public class RoundedPanel : Panel
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int CornerRadius
     {
         get => _cornerRadius;
         set { _cornerRadius = value; UpdateRegion(); Invalidate(); }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color? FillColor
     {
         get => _fillColor;
         set { _fillColor = value; Invalidate(); }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color? BorderColor
     {
         get => _borderColor;
         set { _borderColor = value; Invalidate(); }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool ShowBorder { get; set; } = true;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public float BorderWidth { get; set; } = 1f;
 
     public Color EffectiveFill => _fillColor ?? AppTheme.Card;
@@ -84,14 +90,18 @@ public class GradientPanel : Panel
                  ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw, true);
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int CornerRadius
     {
         get => _cornerRadius;
         set { _cornerRadius = value; UpdateRegion(); Invalidate(); }
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color StartColor { get; set; } = AppTheme.Primary;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color EndColor { get; set; } = AppTheme.Secondary;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public float Angle { get; set; } = 45f;
 
     public void UpdateRegion()

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -35,11 +36,16 @@ public class RoundedButton : Button
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public ButtonVariant Variant { get; set; }
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int CornerRadius { get; set; } = 12;
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? Icon { get; set; }
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public float IconSize { get; set; } = 11f;
     /// <summary>Resaltado activo (nav). Pinta con fondo Primary y texto blanco.</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool NavActive { get; set; }
 
     protected override void OnMouseEnter(EventArgs e) { base.OnMouseEnter(e); _hovered = true; Invalidate(); }

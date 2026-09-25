@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -283,6 +284,7 @@ public sealed class CategoryChip : UserControl
         _ = count; // el contador se muestra en el paint
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Active
     {
         get => _active;
@@ -355,6 +357,7 @@ public sealed class SymptomChip : UserControl
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool Selected
     {
         get => _selected;
@@ -442,8 +445,11 @@ public sealed class ProgressBarSkin : Control
     /// <summary>Tamaño preferido real (evita colapso en filas AutoSize).</summary>
     public override Size GetPreferredSize(Size proposedSize) => new Size(Width, Height);
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public bool CustomColor { get; set; }
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int Percent { get => _percent; set { _percent = Math.Clamp(value, 0, 100); Invalidate(); } }
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color Color
     {
         get => _color;

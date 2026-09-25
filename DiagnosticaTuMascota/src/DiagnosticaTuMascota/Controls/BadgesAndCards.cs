@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -22,7 +23,9 @@ public class SeverityBadge : Control
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? Label { get; set; } = "LEVE";
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public SeverityColor ColorKind { get; set; } = SeverityColor.Leve;
 
     /// <summary>Tamaño preferido real (evita colapso en filas AutoSize).</summary>
@@ -75,10 +78,15 @@ public class FeatureCard : UserControl
         AppTheme.ThemeChanged += (_, _) => Invalidate();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string? IconText { get; set; } = "🩺";
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color TintStart { get; set; } = AppTheme.WithAlpha(AppTheme.Primary, 26);
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public Color TintEnd { get; set; } = AppTheme.WithAlpha(AppTheme.Secondary, 26);
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string CardTitle { get; set; } = "Título";
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public string CardDescription { get; set; } = "";
 
     /// <summary>Tamaño preferido real (evita colapso en filas AutoSize).</summary>
@@ -147,6 +155,7 @@ public class PageBody : Panel
     }
 
     /// <summary>Ancho máximo del contenido (0 = sin límite).</summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public int MaxWidth { get; set; } = 1080;
 
     public void CenterChild()

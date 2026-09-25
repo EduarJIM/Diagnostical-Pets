@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using DiagnosticaTuMascota.Theme;
@@ -26,6 +27,7 @@ public class ThemeLabel : Label
         AppTheme.ThemeChanged += (_, _) => ApplyTheme();
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public TextKind TextKind
     {
         get => _textKind;
@@ -37,6 +39,7 @@ public class ThemeLabel : Label
     /// Cuando el texto contiene emoji usamos GDI+ para que se dibujen a color, por lo que
     /// se desactiva la elipsis para evitar texto superpuesto.
     /// </summary>
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
     public new bool AutoEllipsis
     {
         get => base.AutoEllipsis;
