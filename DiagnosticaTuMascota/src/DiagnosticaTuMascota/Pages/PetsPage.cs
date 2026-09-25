@@ -7,7 +7,7 @@ using DiagnosticaTuMascota.Theme;
 
 namespace DiagnosticaTuMascota.Pages;
 
-public sealed class PetsPage : PageBase
+public sealed partial class PetsPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -23,13 +23,29 @@ public sealed class PetsPage : PageBase
     private ThemeLabel subtitle = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private RoundedButton addBtn = null!;
-    private readonly INavigator _nav;
-    private readonly FlowLayoutPanel _cardsHost;
+    private INavigator _nav = null!;
+    private FlowLayoutPanel _cardsHost = null!;
     private List<PetData> _pets = new();
 
     public PetsPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public PetsPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1150 };
         Controls.Add(body);
 

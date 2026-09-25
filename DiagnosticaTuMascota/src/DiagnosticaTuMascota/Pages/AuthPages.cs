@@ -8,7 +8,7 @@ using DiagnosticaTuMascota.Theme;
 
 namespace DiagnosticaTuMascota.Pages;
 
-public sealed class LoginPage : PageBase
+public sealed partial class LoginPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private CenteredHost host = null!;
@@ -32,13 +32,29 @@ public sealed class LoginPage : PageBase
     private RoundedButton loginBtn = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private ThemeLabel footer = null!;
-    private readonly INavigator _nav;
-    private readonly RoundedTextBox _email;
-    private readonly RoundedTextBox _password;
+    private INavigator _nav = null!;
+    private RoundedTextBox _email = null!;
+    private RoundedTextBox _password = null!;
 
     public LoginPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public LoginPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         host = new CenteredHost { Dock = DockStyle.Fill };
         Controls.Add(host);
 
@@ -165,7 +181,7 @@ public sealed class LoginPage : PageBase
     }
 }
 
-public sealed class RegisterPage : PageBase
+public sealed partial class RegisterPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private CenteredHost host = null!;
@@ -183,16 +199,32 @@ public sealed class RegisterPage : PageBase
     private RoundedButton createBtn = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private ThemeLabel footer = null!;
-    private readonly INavigator _nav;
-    private readonly RoundedTextBox _name;
-    private readonly RoundedTextBox _phone;
-    private readonly RoundedTextBox _email;
-    private readonly RoundedTextBox _password;
-    private readonly RoundedTextBox _confirm;
+    private INavigator _nav = null!;
+    private RoundedTextBox _name = null!;
+    private RoundedTextBox _phone = null!;
+    private RoundedTextBox _email = null!;
+    private RoundedTextBox _password = null!;
+    private RoundedTextBox _confirm = null!;
 
     public RegisterPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public RegisterPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         host = new CenteredHost { Dock = DockStyle.Fill };
         Controls.Add(host);
 
@@ -328,7 +360,7 @@ public sealed class RegisterPage : PageBase
     }
 }
 
-public sealed class ForgotPasswordPage : PageBase
+public sealed partial class ForgotPasswordPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private CenteredHost host = null!;
@@ -352,19 +384,35 @@ public sealed class ForgotPasswordPage : PageBase
     private ThemeLabel confirmLabel = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private RoundedButton submit = null!;
-    private readonly INavigator _nav;
-    private readonly Panel _stepHost;
-    private readonly RoundedTextBox _emailField;
-    private readonly RoundedTextBox _phoneField;
-    private readonly RoundedTextBox _newPass;
-    private readonly RoundedTextBox _confirmPass;
-    private readonly ProgressIndicator _progress;
-    private readonly ThemeLabel _subtitle;
+    private INavigator _nav = null!;
+    private Panel _stepHost = null!;
+    private RoundedTextBox _emailField = null!;
+    private RoundedTextBox _phoneField = null!;
+    private RoundedTextBox _newPass = null!;
+    private RoundedTextBox _confirmPass = null!;
+    private ProgressIndicator _progress = null!;
+    private ThemeLabel _subtitle = null!;
     private int _step = 1;
 
     public ForgotPasswordPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public ForgotPasswordPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         host = new CenteredHost { Dock = DockStyle.Fill };
         Controls.Add(host);
 

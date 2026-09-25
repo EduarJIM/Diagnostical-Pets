@@ -14,7 +14,7 @@ namespace DiagnosticaTuMascota.Pages;
 /// Resultado del triaje (DiagnosticResult.tsx): hero de severidad, implicaciones
 /// clínicas, acciones recomendadas y guardado automático en el historial.
 /// </summary>
-public sealed class DiagnosticResultPage : PageBase
+public sealed partial class DiagnosticResultPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -52,19 +52,35 @@ public sealed class DiagnosticResultPage : PageBase
     private RoundedButton finishBtn = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private RoundedButton historyBtn = null!;
-    private readonly INavigator _nav;
-    private readonly SeverityHero _hero;
-    private readonly FlowLayoutPanel _implicationsList;
-    private readonly FlowLayoutPanel _actionsList;
-    private readonly RoundedPanel _extraCard;
-    private readonly ThemeLabel _extraText;
-    private readonly ThemeLabel _generatedLabel;
+    private INavigator _nav = null!;
+    private SeverityHero _hero = null!;
+    private FlowLayoutPanel _implicationsList = null!;
+    private FlowLayoutPanel _actionsList = null!;
+    private RoundedPanel _extraCard = null!;
+    private ThemeLabel _extraText = null!;
+    private ThemeLabel _generatedLabel = null!;
     private bool _saved;
     private NavState? _pending;
 
     public DiagnosticResultPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public DiagnosticResultPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 980 };
         Controls.Add(body);
 

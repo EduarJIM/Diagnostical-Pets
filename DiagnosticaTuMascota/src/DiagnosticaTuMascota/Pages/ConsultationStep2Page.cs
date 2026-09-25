@@ -11,7 +11,7 @@ namespace DiagnosticaTuMascota.Pages;
 /// Paso 2 del análisis (ConsultationStep2.tsx): asignación de mascota e
 /// información adicional antes de generar el diagnóstico.
 /// </summary>
-public sealed class ConsultationStep2Page : PageBase
+public sealed partial class ConsultationStep2Page : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -49,16 +49,32 @@ public sealed class ConsultationStep2Page : PageBase
     private RoundedButton submit = null!;
     private const string ManualOption = "Otra Mascota (No Registrada)";
 
-    private readonly INavigator _nav;
-    private readonly RoundedComboBox _petCombo;
-    private readonly RoundedTextBox _manualName;
-    private readonly ThemeLabel _manualLabel;
-    private readonly RoundedTextBox _additional;
+    private INavigator _nav = null!;
+    private RoundedComboBox _petCombo = null!;
+    private RoundedTextBox _manualName = null!;
+    private ThemeLabel _manualLabel = null!;
+    private RoundedTextBox _additional = null!;
     private NavState? _pending;
 
     public ConsultationStep2Page(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public ConsultationStep2Page() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 980 };
         Controls.Add(body);
 

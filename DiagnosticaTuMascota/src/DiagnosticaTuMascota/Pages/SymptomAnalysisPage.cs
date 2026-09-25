@@ -11,7 +11,7 @@ namespace DiagnosticaTuMascota.Pages;
 /// Paso 1 del análisis de síntomas (SymptomAnalysis.tsx): categorías con sus
 /// píldoras de síntomas, banner de aviso y botón Continuar.
 /// </summary>
-public sealed class SymptomAnalysisPage : PageBase
+public sealed partial class SymptomAnalysisPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -41,13 +41,13 @@ public sealed class SymptomAnalysisPage : PageBase
     private ColumnStyle colRight = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private RoundedPanel bottomBar = null!;
-    private readonly INavigator _nav;
-    private readonly HashSet<string> _selected = new();
-    private readonly ThemeLabel _countLabel;
-    private readonly RoundedButton _continueBtn;
-    private readonly Panel _categoryHost;
-    private readonly TableLayoutPanel _mainRow;
-    private readonly RoundedPanel _contentCard;
+    private INavigator _nav = null!;
+private HashSet<string> _selected = new();
+    private ThemeLabel _countLabel = null!;
+    private RoundedButton _continueBtn = null!;
+    private Panel _categoryHost = null!;
+    private TableLayoutPanel _mainRow = null!;
+    private RoundedPanel _contentCard = null!;
 
     private static readonly (string Name, string Icon, Color C1, Color C2, string[] Symptoms)[] Categories =
     {
@@ -64,6 +64,22 @@ public sealed class SymptomAnalysisPage : PageBase
     public SymptomAnalysisPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public SymptomAnalysisPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1150 };
         Controls.Add(body);
 

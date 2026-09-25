@@ -11,7 +11,7 @@ namespace DiagnosticaTuMascota.Pages;
 /// Historial y seguimiento (History.tsx): tres pestañas — Consultas Anteriores,
 /// Próximos Procesos y Alertas Activas — con tarjetas y modales.
 /// </summary>
-public sealed class HistoryPage : PageBase
+public sealed partial class HistoryPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -29,19 +29,35 @@ public sealed class HistoryPage : PageBase
     private FlowLayoutPanel tabs = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private Panel contentHost = null!;
-    private readonly INavigator _nav;
-    private readonly PillButton _tabHistory;
-    private readonly PillButton _tabUpcoming;
-    private readonly PillButton _tabAlerts;
-    private readonly FlowLayoutPanel _historyList;
-    private readonly FlowLayoutPanel _upcomingList;
-    private readonly FlowLayoutPanel _alertsList;
-    private readonly RoundedButton _actionBtn;
+    private INavigator _nav = null!;
+    private PillButton _tabHistory = null!;
+    private PillButton _tabUpcoming = null!;
+    private PillButton _tabAlerts = null!;
+    private FlowLayoutPanel _historyList = null!;
+    private FlowLayoutPanel _upcomingList = null!;
+    private FlowLayoutPanel _alertsList = null!;
+    private RoundedButton _actionBtn = null!;
     private int _tab;
 
     public HistoryPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public HistoryPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1080 };
         Controls.Add(body);
 

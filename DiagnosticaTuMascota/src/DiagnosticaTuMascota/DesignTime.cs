@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Text.Json;
 using System.Windows.Forms;
+using DiagnosticaTuMascota.Controls;
 using DiagnosticaTuMascota.Pages;
 using DiagnosticaTuMascota.Storage;
 

@@ -18,7 +18,7 @@ public sealed class UiSettings
 /// Ventana principal: barra lateral, navegación entre páginas, tema persistido,
 /// toasts y el sistema de alarmas (revisión cada 5s como useAlarms.ts).
 /// </summary>
-public sealed class MainForm : Form, INavigator
+public sealed partial class MainForm : Form, INavigator
 {
     private readonly AppStorage _storage;
     private readonly SidebarControl _sidebar;
@@ -28,12 +28,24 @@ public sealed class MainForm : Form, INavigator
     private readonly AlarmSoundPlayer _sound;
     private bool _alarmModalOpen;
 
+    /// <summary>
+    /// Constructor sin argumentos: lo usa únicamente el Diseñador de Visual Studio
+    /// para poder abrir MainForm y ver su diseño. Usa un almacenamiento en memoria,
+    /// así que no toca los datos reales del usuario.
+    /// </summary>
+    public MainForm() : this(DesignTime.Storage)
+    {
+        Size = DesignTime.MainCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
     public MainForm(AppStorage storage)
     {
         _storage = storage;
         Text = "Diagnostica tu Mascota";
         StartPosition = FormStartPosition.CenterScreen;
-        WindowState = FormWindowState.Maximized;
+        // En tiempo de diseño la ventana no se maximiza: el diseñador controla su tamaño.
+        if (!DesignTime.IsActive) WindowState = FormWindowState.Maximized;
         MinimumSize = new Size(1120, 720);
         BackColor = AppTheme.Background;
 

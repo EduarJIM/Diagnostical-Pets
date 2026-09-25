@@ -7,7 +7,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace DiagnosticaTuMascota.Pages;
 
-public sealed class DashboardPage : PageBase
+public sealed partial class DashboardPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -35,11 +35,27 @@ public sealed class DashboardPage : PageBase
     private MedicalDisclaimer disclaimer = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private HeroArt hero = null!;
-    private readonly INavigator _nav;
+    private INavigator _nav = null!;
 
     public DashboardPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public DashboardPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1200 };
         Controls.Add(body);
 

@@ -84,6 +84,35 @@ dotnet test tests/DiagnosticaTuMascota.Tests
 > Desde Linux/macOS se pueden **compilar** gracias a `EnableWindowsTargeting=true`,
 > pero no ejecutarse.
 
+### Diseñador visual (arrastrar botones en Visual Studio)
+
+Todas las páginas y la ventana principal están preparadas para abrirse en el
+**Diseñador de Windows Forms**: son clases `partial`, su construcción está en
+`InitializeComponent()` y los controles son **campos** (el Diseñador solo reconoce
+los controles declarados así).
+
+Para mover un botón o un panel visualmente:
+
+1. En el **Explorador de soluciones** abre un archivo de página, por ejemplo
+   `Pages/PetsPage.cs`.
+2. Con el cursor dentro de la clase, ve a **Ver → Diseñador** (o pulsa
+   `Shift+F7` para volver al código).
+3. Arrastra los controles y guarda. Visual Studio escribe los cambios en un
+   `*.Designer.cs` nuevo, que se suma a la clase `partial`.
+
+Detalles a tener en cuenta:
+
+- En el Diseñador las páginas se muestran con los **datos de ejemplo**
+  (`DemoData`) y con un navegador falso (`DesignTimeNavigator`), así que puedes
+  ver los estados con contenido sin tocar los datos reales del usuario.
+- Parte del posicionamiento original se hace desde manejadores `Resize`; en el
+  Diseñador se recalcula al abrir (`DesignTime.PrimeLayout`).
+- Los controles personalizados (`RoundedButton`, `ThemeLabel`, `RoundedTextBox`,
+  `ToggleSwitch`...) se dibujan enteros con GDI+: en el Diseñador puedes moverlos
+  y cambiar sus propiedades exposed, pero no editar su dibujado interno.
+- Si mueves algo y en la app se ve peor, tienes el historial de git para volver
+  atrás; y el diseño se resetea borrando el `*.Designer.cs` generado.
+
 ### Paginas implementadas
 
 | Pagina | Descripcion |

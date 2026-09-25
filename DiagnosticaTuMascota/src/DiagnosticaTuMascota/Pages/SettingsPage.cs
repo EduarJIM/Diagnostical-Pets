@@ -10,7 +10,7 @@ namespace DiagnosticaTuMascota.Pages;
 /// Configuración de cuenta (Settings.tsx): perfil (nombre + correo fijo),
 /// seguridad de contraseña y cierre de sesión.
 /// </summary>
-public sealed class SettingsPage : PageBase
+public sealed partial class SettingsPage : PageBase
 {
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private PageBody body = null!;
@@ -46,17 +46,33 @@ public sealed class SettingsPage : PageBase
     private ThemeLabel warnLabel = null!;
     /// <summary>Control del diseño (ver InitializeComponent).</summary>
     private RoundedButton saveSecurity = null!;
-    private readonly INavigator _nav;
-    private readonly RoundedTextBox _name;
-    private readonly RoundedTextBox _email;
-    private readonly RoundedTextBox _currentPass;
-    private readonly RoundedTextBox _newPass;
-    private readonly RoundedTextBox _confirmPass;
+    private INavigator _nav = null!;
+    private RoundedTextBox _name = null!;
+    private RoundedTextBox _email = null!;
+    private RoundedTextBox _currentPass = null!;
+    private RoundedTextBox _newPass = null!;
+    private RoundedTextBox _confirmPass = null!;
     private UserAccount? _user;
 
     public SettingsPage(INavigator nav)
     {
         _nav = nav;
+        InitializeComponent();
+    }
+
+    /// <summary>
+    /// Constructor solo para el Diseñador de Visual Studio.
+    /// Usa un navegador y un almacenamiento en memoria, así la página
+    /// se ve en el diseño exactamente igual que en ejecución.
+    /// </summary>
+    public SettingsPage() : this(DesignTimeNavigator.Instance)
+    {
+        Size = DesignTime.PageCanvas;
+        DesignTime.PrimeLayout(this);
+    }
+
+    private void InitializeComponent()
+    {
         body = new PageBody { Dock = DockStyle.Fill, MaxWidth = 1100 };
         Controls.Add(body);
 
