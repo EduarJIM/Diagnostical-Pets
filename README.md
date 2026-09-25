@@ -1,8 +1,6 @@
 # Diagnostica tu Mascota
 
-Sistema integral de orientacion de salud para mascotas, disponible como aplicacion web.
-
-> Este repositorio contiene **solo el frontend** (React + Vite). La aplicacion de escritorio y el servidor quedan fuera del repositorio.
+Sistema integral de orientacion de salud para mascotas, disponible como aplicacion web y de escritorio.
 
 ## Descripcion
 
@@ -21,12 +19,23 @@ Sistema integral de orientacion de salud para mascotas, disponible como aplicaci
 
 ```
 Diagnostical-Pets/
-├── src/                          # Codigo de la aplicacion (React + Vite)
+├── src/                          # Frontend web (React + Vite + Tailwind)
 ├── public/
 ├── guidelines/
+├── DiagnosticaTuMascota/         # Aplicacion de escritorio (C# WinForms)
+│   ├── src/DiagnosticaTuMascota/
+│   │   ├── Controls/             # Controles personalizados GDI+
+│   │   ├── Core/                 # Auth, triaje, alarmas, modelos
+│   │   ├── Pages/                # Paginas (UserControls)
+│   │   ├── Storage/              # Persistencia local
+│   │   └── Theme/                # Paleta de colores y helpers
+│   └── tests/                    # Pruebas unitarias
 ├── README.md
 └── ATTRIBUTIONS.md
 ```
+
+> La aplicacion de escritorio es **standalone**: no tiene backend ni servidor, toda la
+> logica corre en el cliente y guarda los datos en archivos locales.
 
 ## Aplicacion Web (frontend)
 
@@ -38,6 +47,67 @@ Tecnologias: React 18, Vite, TypeScript, Tailwind CSS 4, MUI, Radix UI, Framer M
 npm install
 npm run dev
 ```
+
+## Aplicacion de Escritorio (C# WinForms)
+
+Tecnologias: C# / WinForms / GDI+ personalizado. **Sin backend**: toda la logica
+(auth, triaje, historial) corre en el cliente y se persiste en archivos locales.
+
+### Requisitos
+
+- Windows 10 / 11
+- **.NET 8 SDK** (el proyecto apunta a `net8.0-windows`) o Visual Studio 2022/2026
+  con la carga de trabajo "Desarrollo de aplicaciones de escritorio .NET"
+  (Visual Studio 2026 con .NET 10 tambien compila el proyecto: instala el
+  *targeting pack* .NET 8 para Windows si te lo pide).
+
+### Como abrirla en otra maquina
+
+```bash
+git clone https://github.com/EduarJIM/Diagnostical-Pets.git
+cd Diagnostical-Pets/DiagnosticaTuMascota
+dotnet restore
+dotnet run --project src/DiagnosticaTuMascota
+```
+
+Tambien puedes abrir `DiagnosticaTuMascota.sln` en Visual Studio y pulsar F5.
+
+### Pruebas
+
+```bash
+dotnet test tests/DiagnosticaTuMascota.Tests
+```
+
+### Paginas implementadas
+
+| Pagina | Descripcion |
+|--------|-------------|
+| Login | Formulario de inicio de sesion con tarjeta centrada |
+| Registro | Creacion de cuenta con validacion de campos |
+| Recuperar contrasena | Proceso de 3 pasos (email, telefono, nueva contrasena) |
+| Dashboard | Hero con animacion, tarjetas de features, disclaimer medico |
+| Mis Mascotas | Grid de tarjetas de mascotas con perfil clinico |
+| Analisis de Sintomas | Seleccion por categorias con checkboxes interactivos |
+| Consulta Paso 2 | Asignacion de consulta con combo y campo de contexto |
+| Resultado Diagnostico | Banner de severidad, implicaciones y acciones |
+| Historial | 3 tabs: consultas, proximos procesos, alertas |
+| Configuracion | Perfil, correo (deshabilitado), cambio de contrasena |
+
+### Controles personalizados
+
+- `RoundedPanel` / `RoundedButton` / `RoundedTextBox` / `RoundedComboBox` - controles con esquinas redondeadas
+- `GradientPanel` - Panel con relleno degradado
+- `PulsingIconBox` - Circulo con animacion de pulso
+- `ToggleSwitch` - Interruptor de tema claro/oscuro
+- `SidebarControl` - Navegacion lateral compartida
+
+### Arquitectura
+
+- **MainForm**: Contenedor principal con sidebar y panel de contenido con scroll
+- **UserControls**: Cada pagina es un UserControl que se intercambia en el panel de contenido
+- **Core**: `AuthService`, `TriageEngine`, `AlarmService`, `Models` (logica de negocio)
+- **Storage**: `AppStorage` (persistencia local) y `DemoData` (datos de ejemplo)
+- **AppTheme**: Paleta de colores centralizada (light/dark) y helpers de dibujo GDI+
 
 ## Licencia
 
