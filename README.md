@@ -56,10 +56,10 @@ Tecnologias: C# / WinForms / GDI+ personalizado. **Sin backend**: toda la logica
 ### Requisitos
 
 - Windows 10 / 11
-- **.NET 8 SDK** (el proyecto apunta a `net8.0-windows`) o Visual Studio 2022/2026
-  con la carga de trabajo "Desarrollo de aplicaciones de escritorio .NET"
-  (Visual Studio 2026 con .NET 10 tambien compila el proyecto: instala el
-  *targeting pack* .NET 8 para Windows si te lo pide).
+- **.NET 10 SDK** (el proyecto apunta a `net10.0-windows`) o Visual Studio 2026 con la
+  carga de trabajo "Desarrollo de aplicaciones de escritorio .NET".
+- En una maquina que solo tiene **.NET 8**, compila indicando el framework:
+  `dotnet run -p:AppTargetFramework=net8.0-windows --project src/DiagnosticaTuMascota`
 
 ### Como abrirla en otra maquina
 
@@ -72,11 +72,17 @@ dotnet run --project src/DiagnosticaTuMascota
 
 Tambien puedes abrir `DiagnosticaTuMascota.sln` en Visual Studio y pulsar F5.
 
+Para generar el ejecutable: `dotnet publish src/DiagnosticaTuMascota -c Release -r win-x64 --self-contained false`
+
 ### Pruebas
 
 ```bash
 dotnet test tests/DiagnosticaTuMascota.Tests
 ```
+
+> Las pruebas y la app solo **ejecutan** en Windows (`Microsoft.WindowsDesktop.App`).
+> Desde Linux/macOS se pueden **compilar** gracias a `EnableWindowsTargeting=true`,
+> pero no ejecutarse.
 
 ### Paginas implementadas
 

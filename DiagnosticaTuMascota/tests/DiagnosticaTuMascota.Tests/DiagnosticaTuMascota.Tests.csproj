@@ -1,7 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <!-- Debe coincidir con el TFM de la app: por defecto .NET 10, configurable igual. -->
+    <AppTargetFramework Condition="'$(AppTargetFramework)' == ''">net10.0-windows</AppTargetFramework>
+    <TargetFramework>$(AppTargetFramework)</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>

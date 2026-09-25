@@ -2,8 +2,23 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <!--
+      Target framework configurable. Por defecto .NET 10 (Visual Studio 2026 / SDK 10).
+      Para compilar en una maquina que solo tiene .NET 8:
+          dotnet build -p:AppTargetFramework=net8.0-windows
+    -->
+    <AppTargetFramework Condition="'$(AppTargetFramework)' == ''">net10.0-windows</AppTargetFramework>
+    <TargetFramework>$(AppTargetFramework)</TargetFramework>
+    <!-- Permite compilar tambien desde Linux/macOS (descarga los targeting packs de Windows). -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <UseWindowsForms>true</UseWindowsForms>
+    <!--
+      .NET 10 promocio el analizador WFO1000 ("la propiedad no configura la
+      serializacion de su contenido") de advertencia a ERROR. Los UserControls de
+      este proyecto se configuran 100% por codigo y no usan el designer ni .resx,
+      asi que ese diagnostico no aplica y se silura.
+    -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>DiagnosticaTuMascota</RootNamespace>
