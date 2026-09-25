@@ -2,6 +2,11 @@
 
 Sistema integral de orientacion de salud para mascotas, disponible como aplicacion web y de escritorio.
 
+> **¿Quieres saber qué es Windows Forms y cómo funciona esta app de escritorio?**
+> Lee **[DiagnosticaTuMascota/COMO-FUNCIONA.md](DiagnosticaTuMascota/COMO-FUNCIONA.md)**:
+> explica la librería, el arranque del programa, el mapa de todos los archivos y qué
+> funciones de `System.Windows.Forms` usa el proyecto.
+
 ## Descripcion
 
 **Diagnostica tu Mascota** es una herramienta que permite a los duenos de mascotas evaluar el estado de salud de sus animales de compania mediante un analisis de sintomas. Ofrece orientacion general basada en protocolos de triaje veterinario, sin reemplazar el diagnostico profesional.

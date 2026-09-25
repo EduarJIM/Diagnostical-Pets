@@ -1,8 +1,12 @@
 # Diagnostica tu Mascota — Aplicación de Escritorio (WinForms)
 
-Port a escritorio C# / .NET 8 (WinForms) de la aplicación web **"Diagnostica tu
+Port a escritorio C# / .NET 10 (WinForms) de la aplicación web **"Diagnostica tu
 Mascota"**, con el mismo diseño visual (tema claro/oscuro, sidebar, tarjetas,
 toasts) y todos los flujos funcionales.
+
+> **📖 Documentación del proyecto:** [`COMO-FUNCIONA.md`](COMO-FUNCIONA.md) explica
+> **qué es Windows Forms**, qué funciones de la librería usa el proyecto, cómo
+> arranca la aplicación y qué hace cada archivo.
 
 > El triaje veterinario está portado 1:1 desde `triageDictionary.ts` de la web
 > y está cubierto por pruebas unitarias (TDD con xUnit). Los resultados son
@@ -10,21 +14,22 @@ toasts) y todos los flujos funcionales.
 
 ## Requisitos
 
-- **.NET 8 SDK** (probado con 8.0.425). Descargable desde
-  https://dotnet.microsoft.com/download/dotnet/8.0
+- **.NET 10 SDK**. Descargable desde https://dotnet.microsoft.com/download/dotnet/10.0
 - **Visual Studio 2026** (Community o superior) con la carga de trabajo
   **"Desarrollo de escritorio con .NET"** (opcional — el CLI basta para
   compilar, probar y ejecutar).
 
 ## Abrir en Visual Studio 2026
 
-1. Instala el SDK de .NET 8 y VS 2026 con la carga de trabajo *Desarrollo de
+1. Instala el SDK de .NET 10 y VS 2026 con la carga de trabajo *Desarrollo de
    escritorio con .NET*.
 2. Abre el archivo de solución:
    `DiagnosticaTuMascota.sln` (raíz de esta carpeta).
 3. Establece `src\DiagnosticaTuMascota` como proyecto de inicio (clic derecho →
    *Establecer como proyecto de inicio*).
 4. Presiona **F5** (o Ctrl+F5) para ejecutar.
+5. Para **editar la interfaz visualmente**: clic derecho sobre cualquier página de
+   `src\DiagnosticaTuMascota\Pages\` → *Ver → Diseñador*.
 
 ## Compilar y ejecutar desde línea de comandos
 
@@ -36,7 +41,7 @@ dotnet run --project src\DiagnosticaTuMascota
 ```
 
 El ejecutable queda en
-`src\DiagnosticaTuMascota\bin\Debug\net8.0-windows\DiagnosticaTuMascota.exe`.
+`src\DiagnosticaTuMascota\bin\Debug\net10.0-windows\DiagnosticaTuMascota.exe`.
 
 ## Pruebas (TDD con xUnit)
 
@@ -70,6 +75,7 @@ DiagnosticaTuMascota/
 │  ├─ Controls/                       # Botones, inputs, sidebar, modal, toasts…
 │  └─ Pages/                          # Las 10 pantallas de la app
 ├─ tests/DiagnosticaTuMascota.Tests/  # Pruebas unitarias xUnit
+├─ COMO-FUNCIONA.md                   # Guía: qué es WinForms y cómo funciona la app
 └─ DiagnosticaTuMascota.sln
 ```
 
